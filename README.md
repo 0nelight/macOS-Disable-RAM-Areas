@@ -1,7 +1,7 @@
 # EFI-Script to disable a defective memory area before booting macOS
 Tested on MacBook Pro Late 2013 on MacOS Big Sur.
 
-ToDos:
+ToDos (Contributions welcome!):
  - Testing with newer devices and newer macOs Versions
  - Add a few seconds delay to actually see the script executing (exits too fast to see anything)
  - Provide better documentation (how to compile)
