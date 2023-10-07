@@ -1,8 +1,6 @@
 # EFI-Script to disable a defective memory area before booting macOS
 Tested on MacBook Pro Late 2013 on MacOS Big Sur.
 
-You can use Tools like **Refind** to execute the compiled script before booting MacOS.
-
 ToDos:
  - Testing with newer devices and newer macOs Versions
  - Add a few seconds delay to actually see the script executing (exits too fast to see anything)
@@ -14,4 +12,5 @@ If you expierience Hangs of MacOS which are related to faulty memory or get the 
 PPMOO2, PPMOO3, PPMOO4 --> "There may be an issue with the onboard memory."
 
 This script works similar to the gnu grub **"badram"** command.  
-You can check your ram with **memtest86+** Utility to find the exact location and size of the area you have to disable.
+You can check your ram with **memtest86+** Utility to find the exact location and size of the area you have to disable.  
+You can use Tools like **Refind** to execute the compiled script before booting MacOS.
