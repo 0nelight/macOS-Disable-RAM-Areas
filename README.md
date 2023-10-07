@@ -1,5 +1,4 @@
-# Disables defective RAM Areas before booting into macOS
-EFI Script to disable a defective memory area before booting macOS
+# EFI-Script to disable a defective memory area before booting macOS
 
 Works on MacBook Pro Late 2013 on MacOS Big Sur.
 
