@@ -12,3 +12,6 @@ ToDos:
 
 If you expierience Hangs of MacOS which are related to faulty memory or get the following errors, this script might help you to mark a certain area of your memory as defective so that MacOS never tries to access it during runtime:  
 PPMOO2, PPMOO3, PPMOO4 --> "There may be an issue with the onboard memory." 
+
+This script works similar to the gnu grub "badram" command.
+You can check your ram with memtest86+ Utility to find the exact location and size of the area you have to disable.
