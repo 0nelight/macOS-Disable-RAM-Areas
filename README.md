@@ -5,6 +5,7 @@ ToDos:
  - Testing with newer devices and newer macOs Versions
  - Add a few seconds delay to actually see the script executing (exits too fast to see anything)
  - Provide better documentation (how to compile)
+ - Cleaner Code
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G2G2GIZ3R)  
 
