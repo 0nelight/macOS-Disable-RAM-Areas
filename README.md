@@ -1,7 +1,7 @@
 # EFI-Script to disable a defective memory area before booting macOS
 Tested on MacBook Pro Late 2013 on MacOS Big Sur.
 
-You can use Tools like **Refind** to execute this script before booting MacOS.
+You can use Tools like **Refind** to execute the compiled script before booting MacOS.
 
 ToDos:
  - Testing with newer devices and newer macOs Versions
