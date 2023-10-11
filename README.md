@@ -13,5 +13,5 @@ If you expierience Hangs of MacOS which are related to faulty memory or get the 
 PPMOO2, PPMOO3, PPMOO4 --> "There may be an issue with the onboard memory."
 
 This script works similar to the gnu grub **"badram"** command.  
-You can use tools like **memtest86+** to find the exact location and size of the area you have to disable.  
-You can use tools like **Refind** to execute the compiled script before booting MacOS.
+You can use tools like **[Memtest86+](https://memtest.org/)** to find the exact location and size of the area you have to disable.  
+You can use tools like **[Refind](https://www.rodsbooks.com/refind/)** to execute the compiled script before booting MacOS.
