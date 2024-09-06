@@ -10,7 +10,7 @@ EFI_STATUS
 efi_main(EFI_HANDLE image, EFI_SYSTEM_TABLE * systemTable) {
   SIMPLE_TEXT_OUTPUT_INTERFACE * conOut = systemTable -> ConOut;
 
-  conOut -> OutputString(conOut, L "Set Bad Ram...\r\n");
+  conOut -> OutputString(conOut, L"Set Bad Ram...\r\n");
 
   EFI_PHYSICAL_ADDRESS Addr = 12884901888;
 
@@ -18,8 +18,12 @@ efi_main(EFI_HANDLE image, EFI_SYSTEM_TABLE * systemTable) {
   gBS = systemTable -> BootServices;
 
   gBS -> AllocatePages(2, 8, 40960, & Addr);
-
-  conOut -> OutputString(conOut, L "ok!\r\n");
   
+  gBS->Stall(1000000);
+
+  conOut -> OutputString(conOut, L"ok!\r\n");
+  
+  gBS->Stall(1000000);
+
   return EFI_SUCCESS;
 }
