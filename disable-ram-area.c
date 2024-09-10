@@ -6,55 +6,34 @@
 #include <efiapi.h>
 #include <efierr.h>
 
+// Define the GUID for EFI_LOADED_IMAGE_PROTOCOL
+static EFI_GUID LoadedImageProtocol = EFI_LOADED_IMAGE_PROTOCOL_GUID;
 
-EFI_STATUS
-efi_main(EFI_HANDLE image, EFI_SYSTEM_TABLE *systemTable) {
-    SIMPLE_TEXT_OUTPUT_INTERFACE *conOut = systemTable->ConOut;
+#define DEFAULT_STALL_TIME_MS 1000
 
-    conOut->OutputString(conOut, L"Disable Ram Area...\r\n");
+EFI_STATUS efi_main(EFI_HANDLE image_handle, EFI_SYSTEM_TABLE *system_table) {
+    EFI_STATUS status;
+    EFI_LOADED_IMAGE *loaded_image;
+    EFI_BOOT_SERVICES *boot_services = system_table->BootServices;
+    EFI_SIMPLE_TEXT_OUT_PROTOCOL *console_output = system_table->ConOut;
 
-    EFI_PHYSICAL_ADDRESS lowest_error_address = 0x300000000;
-    EFI_PHYSICAL_ADDRESS highest_error_address = 0x309FFFF48;
-
-    EFI_BOOT_SERVICES *gBS;
-    gBS = systemTable->BootServices;
-
-    UINTN num_pages = (highest_error_address - lowest_error_address + 4095) / 4096;
-
-    EFI_STATUS status = gBS->AllocatePages(AllocateAddress, EfiRuntimeServicesData, num_pages, &lowest_error_address);
+    // Call HandleProtocol directly for EFI 1.1
+    status = boot_services->HandleProtocol(image_handle, &LoadedImageProtocol, (void **)&loaded_image);
     if (EFI_ERROR(status)) {
-        conOut->OutputString(conOut, L"Failed to allocate pages!\r\n");
+        // Create a simple error message
+        CHAR16 error_message[] = L"Failed to get loaded image protocol. Halting.\r\n";
+        console_output->OutputString(console_output, error_message);
+
+        boot_services->Stall(DEFAULT_STALL_TIME_MS * 1000);
         return status;
     }
 
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
-    conOut->OutputString(conOut, L"Disabled Ram Area!\r\n");
+    // Success message (optional)
+    CHAR16 success_message[] = L"Loaded image protocol retrieved successfully.\r\n";
+    console_output->OutputString(console_output, success_message);
 
-    gBS->Stall(3000000); // Stall for 3 seconds
-
+    boot_services->Stall(DEFAULT_STALL_TIME_MS * 1000);
+   
     return EFI_SUCCESS;
 }
+
