@@ -9,7 +9,7 @@ If you're receiving errors like:
 This utility offers a software solution by marking specific memory areas as defective, so macOS avoids them during runtime.
 
 ### Steps:
-1. **Inform yourself**: Read through this README, [the Release-Notes](https://github.com/0nelight/macOS-Disable-RAM-Areas/releases/tag/v0.1.0-alpha) and the [Discussions-Page](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions)
+1. **Inform yourself**: Read through this README, [the Release-Notes](https://github.com/0nelight/macOS-Disable-RAM-Areas/releases/tag/v0.2.1-beta) and the [Discussions-Page](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions)
 2. **Identify Faulty Memory**: Use diagnostic tools like [Memtest86+](https://www.memtest.org/) in Error-Summary-Mode to get the lowest and highest address of misbehaiving RAM.
 3. **Run this EFI-Utility**: Use tools like [rEFInd](https://www.rodsbooks.com/refind/) to run this EFI-utility once before booting into macOS. This will mark the faulty RAM Area as unavailable for MacOS and therefore allowing a normal Operation of MacOs with only having a little bit less RAM.
 4. **Boot MacOS**
