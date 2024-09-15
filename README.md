@@ -1,5 +1,6 @@
 # EFI Memory Patch Utility for macOS 
 
+**Currently the activation of this Utility needs quite a bit of IT-expertise. But if you put some effort into reading and understanding all the information, a lot of people can manage to get it working.** 
 Are you experiencing system hangs or kernel panics on your Apple Mac or MacBook due to faulty memory? This EFI utility allows you to **disable defective memory regions** before macOS boots, preventing system crashes or unbootable Systems.
 
 If you're receiving errors like:
