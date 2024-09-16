@@ -1,6 +1,6 @@
 # EFI Memory Patch Utility for macOS 
 
-**Currently the activation of this Utility needs quite a bit of IT-expertise. But if you put some effort into reading and understanding all the information, a lot of people can manage to get it working.** 
+**Currently the activation of this Utility needs a bit of effort. But if you put some effort into reading and understanding all the information, a lot of people can manage to get it working.** 
 
 Are you experiencing system hangs or kernel panics on your Apple Mac or MacBook due to faulty memory? This EFI utility allows you to **disable defective memory regions** before macOS boots, preventing system crashes or unbootable Systems.
 
@@ -18,11 +18,17 @@ This utility offers a software solution by marking specific memory areas as defe
 5. **Automate Booting into MacOs with disabled RAM-Areas**: See [this Guide](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3).
 4. **In case you have Questions not answered already - please open [a new Discussion](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/new?category=q-a).**
 
-### Disclaimer:
+
+## Disclaimer:
 This utility is not affiliated with, authorized, endorsed by, or in any way officially connected to Apple Inc. The use of this software may affect the operation of your system, and it is provided as-is, without any express or implied warranties. This project is intended for personal use and is provided solely as a workaround for users experiencing issues with defective memory on their Apple Mac or MacBook. By using this utility, you acknowledge that Apple Inc. is not responsible for any consequences that may arise from its use, including but not limited to potential system instability or hardware failure.
 
 ## Important Note: Compatibility
 This utility has been successfully in use for several years on an **MacBook Pro (Late 2013)** running **macOS Big Sur**. Please read the other Success-Stories on the [Issues-Page](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues?q=label%3Asuccess+is%3Aclosed) or consider [writing one yourself](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues/new?assignees=&labels=success&projects=&template=success-story.md&title=Success-Story) (please fill in your System Information) in case you found this Utility helpful.
+
+## Motivation:
+I see this as a great way to extend hardware lifespan, protect customer and shareholder value, and fight inflation by lowering demand for new devices, thus preserving the purchasing power of the dollar through more efficient resource use. 
+Also such tools help keeping your soil and rivers less polluted from E-Waste and manufacturing waste material, which is good for your health and your health insurance.
+
 
 ## Why This Utility for Apple Mac and MacBook Users?
 Many modern Apple devices, including Macs and MacBooks, come with memory chips soldered directly onto the motherboard. Replacing or reflowing these chips requires advanced tools and expertise, making hardware repair difficult and expensive.
