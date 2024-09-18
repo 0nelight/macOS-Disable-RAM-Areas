@@ -11,6 +11,21 @@ EFI_STATUS ParseCommandLine(CHAR16 *command_line, EFI_PHYSICAL_ADDRESS *Addr, EF
 
     Print(L"Command line: %s\n", command_line);
 
+    // Count the number of arguments
+    int arg_count = 0;
+    CHAR16 *ptr = command_line;
+    while (*ptr) {
+        while (*ptr == ' ') ptr++;  // Skip spaces
+        if (*ptr) arg_count++;      // Found an argument
+        while (*ptr && *ptr != ' ') ptr++;  // Move to next space or end
+    }
+
+    // If four arguments are provided, remove the first one
+    if (arg_count == 4) {
+        while (*command_line && *command_line != ' ') command_line++;  // Skip first argument
+        while (*command_line == ' ') command_line++;  // Skip spaces after the first argument
+    }
+
     // Parse the first address (Hex)
     *Addr = 0;
     while (*command_line && *command_line != ' ') {
@@ -50,6 +65,7 @@ EFI_STATUS ParseCommandLine(CHAR16 *command_line, EFI_PHYSICAL_ADDRESS *Addr, EF
 
     return EFI_SUCCESS;
 }
+
 
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
