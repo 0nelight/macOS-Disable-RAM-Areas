@@ -3,7 +3,7 @@ ARCH	= x86_64
 TARGET  = disable-ram-area.efi
 FORMAT  = efi-app-$(ARCH)
 
-INC		 = /home/user/gnu-efi/inc
+INC		 = /usr/include/efi
 CFLAGS   = -I$(INC) -I$(INC)/$(ARCH) \
 		   -fPIC -fshort-wchar -ffreestanding \
 		   -fno-stack-protector -Wall -D$(ARCH) -Werror -m64 -mno-red-zone
@@ -12,8 +12,8 @@ ifeq ($(ARCH),x86_64)
   CFLAGS += -DEFI_FUNCTION_WRAPPER
 endif
 
-LDFLAGS = -T /home/user/gnu-efi/gnuefi/elf_$(ARCH)_efi.lds -Bsymbolic -shared -nostdlib -znocombreloc \
-		  /home/user/gnu-efi/x86_64/gnuefi/crt0-efi-$(ARCH).o
+LDFLAGS = -T /usr/lib/elf_$(ARCH)_efi.lds -Bsymbolic -shared -nostdlib -znocombreloc \
+		  /usr/lib/crt0-efi-$(ARCH).o
 
 OBJS = disable-ram-area.o
 
@@ -23,7 +23,7 @@ OBJS = disable-ram-area.o
 
 %.so: $(OBJS)
 	$(LD) $(LDFLAGS) -o $@ $^ $(shell $(CC) $(CFLAGS) -print-libgcc-file-name) \
-		/home/user/gnu-efi/x86_64/gnuefi/libgnuefi.a /home/user/gnu-efi/x86_64/lib/libefi.a
+		/usr/lib/libgnuefi.a /usr/lib/libefi.a
 
 all: $(TARGET)
 
