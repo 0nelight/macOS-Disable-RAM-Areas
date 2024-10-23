@@ -50,7 +50,7 @@ UINT8* ReadBadRamFile(EFI_FILE_HANDLE fileHandle)
 }
 
 
-struct ADDRESS_RANGE* ParseCommandLine(CHAR16 *command_line, UINTN *Stalltime) {
+struct ADDRESS_RANGE* ParseCommandLine(CHAR16 *command_line) {
   // Ensure command_line is not null
   if (command_line == NULL) {
       Print(L"No command line arguments provided.\n");
@@ -123,11 +123,6 @@ struct ADDRESS_RANGE* ParseCommandLine(CHAR16 *command_line, UINTN *Stalltime) {
       while (*command_line == ' ') command_line++;  // Skip spaces
     
       // Parse the stall time (Decimal)
-      *Stalltime = 0;
-      while (*command_line && *command_line >= '0' && *command_line <= '9') {
-          *Stalltime = (*Stalltime * 10) + (*command_line - '0');
-          command_line++;
-      }
       break;
   }
 
@@ -137,9 +132,9 @@ struct ADDRESS_RANGE* ParseCommandLine(CHAR16 *command_line, UINTN *Stalltime) {
 
 
 EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
+  struct ADDRESS_RANGE *previousRange;
   EFI_STATUS Status;
   EFI_LOADED_IMAGE *loaded_image;
-  UINTN Stalltime;
   struct ADDRESS_RANGE *addressRanges;
 
   Status = uefi_call_wrapper(BS->HandleProtocol, 3, ImageHandle, &LoadedImageProtocol, (void **)&loaded_image);
@@ -155,39 +150,37 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
       return EFI_INVALID_PARAMETER;
   }
 
-  addressRanges = ParseCommandLine(command_line, &Stalltime);
+  addressRanges = ParseCommandLine(command_line);
+ 
+  // while (addressRanges != 0x0)
+  // {
 
-  if (addressRanges == 0x0) {
-      Print(L"Failed to parse command line.\n");
-      return EFI_INVALID_PARAMETER;
+  Print(L"Parsed values - Addr: 0x%lx, pageNum: %lu, Stalltime: %lu ms\n", addressRanges->startAddress, addressRanges->pageCount);
+  
+  Print(L"Disable RAM Area...!\n");
+  
+  Status = uefi_call_wrapper(BS->AllocatePages, 4, 2, 8, addressRanges->pageCount, &(addressRanges->startAddress));
+  
+  if (EFI_ERROR(Status)) {
+      Print(L"Error!\n");
+      Print(L"AllocatePages failed: %r\n", Status);
+      return Status;  // Return the error status
+  } else {
+      Print(L"Success!\n");
+      Print(L"Memory allocated at address: 0x%lx for %lu pages\n", addressRanges->startAddress, addressRanges->pageCount);
   }
-  
-  while (addressRanges != 0x0)
-  {
 
-    Print(L"Parsed values - Addr: 0x%lx, pageNum: %lu, Stalltime: %lu ms\n", addressRanges->startAddress, addressRanges->pageCount, Stalltime);
-  
-    Print(L"Disable RAM Area...!\n");
-  
-    Status = uefi_call_wrapper(BS->AllocatePages, 4, 2, 8, addressRanges->pageCount, &(addressRanges->startAddress));
-  
-    if (EFI_ERROR(Status)) {
-        Print(L"Error!\n");
-        Print(L"AllocatePages failed: %r\n", Status);
-        uefi_call_wrapper(BS->Stall, 1, Stalltime * 1000);
-        return Status;  // Return the error status
-    } else {
-        Print(L"Success!\n");
-        Print(L"Memory allocated at address: 0x%lx for %lu pages\n", addressRanges->startAddress, addressRanges->pageCount);
-    }
+  Print(L"Checking for more address ranges...\n");
 
-    Print(L"Checking for more address ranges...\n");
+  previousRange = addressRanges;
 
-    addressRanges = addressRanges->next;
+  addressRanges = addressRanges->next;
+
+  FreePool(previousRange);
     //addressRanges should be null when it runs out of stuff.
-  }
+  //}
 
-  uefi_call_wrapper(BS->Stall, 1, Stalltime * 1000);
+  //uefi_call_wrapper(BS->Stall, 1, Stalltime * 1000);
 
   Exit(EFI_SUCCESS, 0,0);
   return EFI_SUCCESS;
