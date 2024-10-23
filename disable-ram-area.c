@@ -181,6 +181,8 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
   //}
 
   //uefi_call_wrapper(BS->Stall, 1, Stalltime * 1000);
+	SystemTable->ConIn->Reset(SystemTable->ConIn, FALSE);
+	SystemTable->RuntimeServices->ResetSystem(EfiResetShutdown, EFI_SUCCESS, 0, NULL);
 
   Exit(EFI_SUCCESS, 0,0);
   return EFI_SUCCESS;
