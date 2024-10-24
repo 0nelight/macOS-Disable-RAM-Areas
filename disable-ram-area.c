@@ -2,7 +2,8 @@
 #include <efilib.h>
 
 
-EFI_STATUS ParseCommandLine(CHAR16 *command_line, EFI_PHYSICAL_ADDRESS *Addr, EFI_PHYSICAL_ADDRESS *EndAddr, UINTN *Stalltime) {
+EFI_STATUS
+ParseCommandLine(CHAR16 *command_line, EFI_PHYSICAL_ADDRESS *Addr, EFI_PHYSICAL_ADDRESS *EndAddr, UINTN *Stalltime) {
     // Ensure command_line is not null
     if (command_line == NULL) {
         Print(L"No command line arguments provided.\n");
@@ -70,11 +71,11 @@ EFI_STATUS ParseCommandLine(CHAR16 *command_line, EFI_PHYSICAL_ADDRESS *Addr, EF
 EFI_STATUS
 efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
     EFI_STATUS Status;
-	EFI_LOADED_IMAGE *loaded_image;
+    EFI_LOADED_IMAGE *loaded_image;
     EFI_PHYSICAL_ADDRESS Addr, EndAddr;
     UINTN Stalltime;
 
-   Status = uefi_call_wrapper(BS->HandleProtocol, 3, ImageHandle, &LoadedImageProtocol, (void **)&loaded_image);
+    Status = uefi_call_wrapper(BS->HandleProtocol, 3, ImageHandle, &LoadedImageProtocol, (void **)&loaded_image);
     if (EFI_ERROR(Status)) {
        Print(L"Error HandleProtocol: %r\n", Status);
        uefi_call_wrapper(BS->Stall, 1, 5000000);
@@ -96,12 +97,20 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
     Print(L"Parsed values - Addr: 0x%lx, EndAddr: 0x%lx, Stalltime: %lu ms\n", Addr, EndAddr, Stalltime);
 
     Print(L"Disable RAM Area...!\n");
-
-    // Align the starting address (Addr) to the previous page boundary
-    Addr = Addr & ~(EFI_PAGE_SIZE - 1);
-
-    // Calculate the number of pages between the aligned Addr and EndAddr
-    UINTN NumPages = ((EndAddr - Addr) + EFI_PAGE_SIZE - 1) / EFI_PAGE_SIZE;
+    // Convert the first address to the number of the page that it's in.
+    Addr /= EFI_PAGE_SIZE;
+    // Convert the last address to the number of the page that it's in.
+    EndAddr /= EFI_PAGE_SIZE;
+    // Get the total number of pages that are referenced. 
+    // If only page 5 is referenced, then 5 - 5 + 1 = 1 page. 
+    // If 5 and 7 are referenced, then 7 - 5 + 1 = 3
+    UINTN NumPages = EndAddr - Addr + 1;
+    // Convert the page numbers with the first address 
+    // back to the addresses of the beginning of the page.
+    Addr *= EFI_PAGE_SIZE;
+    EndAddr *= EFI_PAGE_SIZE;
+    // Change the EndAddr to the end of the page it's in.
+    EndAddr |= EFI_PAGE_SIZE - 1;
 
     Print(L"Disable from 0x%lx to 0x%lx, which is %lu pages\n\n", Addr, EndAddr, NumPages);
 
