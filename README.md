@@ -1,4 +1,4 @@
-# EFI Memory Patch Utility for macOS 
+# EFI Memory Patch Utility for macOS (Intel-CPUs)
 
 **Currently the activation of this Utility needs a bit of effort. But if you put some effort into reading and understanding all the information, a lot of people can manage to get it working.** 
 
@@ -25,7 +25,7 @@ This utility is not affiliated with, authorized, endorsed by, or in any way offi
 The author of this repository assumes no responsibility for any time invested in installing this tool or for any outcomes, whether expected or unexpected. This is a personal, hobbyist project with no formal support or obligations. Use at your own risk.
 
 ## Important Note: Compatibility
-This utility has been successfully in use for several years on an **MacBook Pro (Late 2013)** running **macOS Big Sur**. Since uploading this EFI-Utility on Github it seems other people got it working too. For example on [Macbook Pro 2019 16'](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3#discussioncomment-10753593). Please read the other Success-Stories on the [Issues-Page](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues?q=label%3Asuccess+is%3Aclosed) or consider [writing one yourself](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues/new?assignees=&labels=success&projects=&template=success-story.md&title=Success-Story) (please fill in your System Information) in case you found this Utility helpful.
+This utility has been successfully in use for several years on an **MacBook Pro (Late 2013)** running **macOS Big Sur**. Since uploading this EFI-Utility on Github it seems other people got it working too. For example on [Macbook Pro 2019 16'](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3#discussioncomment-10753593). Please read the other Success-Stories on the [Issues-Page](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues?q=label%3Asuccess+is%3Aclosed) or consider [writing one yourself](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues/new?assignees=&labels=success&projects=&template=success-story.md&title=Success-Story) (please fill in your System Information) in case you found this Utility helpful. This tool doesn't work on Apple silicon Macs.
 
 ## Motivation:
 I see this as a great way to extend hardware lifespan, protect customer and shareholder value, and fight inflation by lowering demand for new devices, thus preserving the purchasing power of the dollar through more efficient resource use. 
