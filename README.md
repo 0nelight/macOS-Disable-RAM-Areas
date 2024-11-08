@@ -27,6 +27,9 @@ The author of this repository assumes no responsibility for any time invested in
 ## Important Note: Compatibility
 This utility has been successfully in use for several years on an **MacBook Pro (Late 2013)** running **macOS Big Sur**. Since uploading this EFI-Utility on Github it seems other people got it working too. For example on [Macbook Pro 2019 16'](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3#discussioncomment-10753593). Please read the other Success-Stories on the [Issues-Page](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues?q=label%3Asuccess+is%3Aclosed) or consider [writing one yourself](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues/new?assignees=&labels=success&projects=&template=success-story.md&title=Success-Story) (please fill in your System Information) in case you found this Utility helpful. This tool doesn't work on Apple silicon Macs.
 
+## Important Note: Other Solutions
+A possibly more user-friendly tool to use to disable RAM-Areas before booting into MacOS would be using the "Open Core Legacy Patcher". [You configure your defective RAM-Areas in the config-file of OC](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/14) and there is no need to use the utility provided here.
+
 ## Motivation:
 I see this as a great way to extend hardware lifespan, protect customer and shareholder value, and fight inflation by lowering demand for new devices, thus preserving the purchasing power of the dollar through more efficient resource use. 
 Also such tools help keeping your soil and rivers less polluted from E-Waste and manufacturing waste material, which is good for your health and your health insurance.
