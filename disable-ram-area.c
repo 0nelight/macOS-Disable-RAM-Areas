@@ -4,6 +4,10 @@
 
 EFI_STATUS
 ParseCommandLine(CHAR16 *command_line, EFI_PHYSICAL_ADDRESS *Addr, EFI_PHYSICAL_ADDRESS *EndAddr, UINTN *Stalltime) {
+    Print(L"\nmacOS-Disable-RAM-Areas\n");
+    Print(L"https://github.com/0nelight/macOS-Disable-RAM-Areas/\n");
+    Print(L"Version 0.2.3-beta\n\n");
+
     // Ensure command_line is not null
     if (command_line == NULL) {
         Print(L"No command line arguments provided.\n");
@@ -94,7 +98,7 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
         return Status;
     }
 
-    Print(L"Parsed values - Addr: 0x%lx, EndAddr: 0x%lx, Stalltime: %lu ms\n", Addr, EndAddr, Stalltime);
+    Print(L"Parsed values - Addr: 0x%lx, EndAddr: 0x%lx, Stalltime: %lu ms\n\n", Addr, EndAddr, Stalltime);
 
     Print(L"Disable RAM Area...!\n");
     // Convert the first address to the number of the page that it's in.
