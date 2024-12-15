@@ -16,7 +16,15 @@ This utility offers a software solution by marking specific memory areas as defe
 3. **Run this EFI-Utility**: Use tools like [rEFInd](https://www.rodsbooks.com/refind/) to run this EFI-utility once before booting into macOS. This will mark the faulty RAM Area as unavailable for MacOS and therefore allowing a normal Operation of MacOs with only having a little bit less RAM.
 4. **Boot MacOS**
 5. **Automate Booting into MacOs with disabled RAM-Areas**: See [this Guide](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3).
-4. **In case you have Questions not answered already - please open [a new Discussion](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/new?category=q-a).**
+6. **You can check whether or not the area was disabled by executing this command in the Terminal:**  
+```bash
+sysctl -a | grep mem | grep Unusable
+```
+It should show something like this:
+```bash
+machdep.memmap.Unusable: 33562624 (Size of your disabled area)
+```
+7. **In case you have Questions not answered already - please open [a new Discussion](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/new?category=q-a).**
 
 
 ## Disclaimer:
