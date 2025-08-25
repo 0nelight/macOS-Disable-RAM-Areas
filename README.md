@@ -6,6 +6,8 @@ Chances are high, you can resolve the following error when executing this utilit
 
 - **PPM002, PPM003, PPM004...**: _"There may be an issue with the onboard memory."_
 
+This tool fulfills the same purpose as the [grub-badram](https://www.gnu.org/software/grub/manual/grub/html_node/badram.html) command which disables RAM-Areas on Linux Systems, but on Apple Mac/Macbook (with Intel-CPU) Systems.
+
 ## Requirements
 - Intel-based Mac or MacBook
 - Diagnostic tool like [Memtest86+](https://www.memtest.org/) to identify faulty memory addresses
