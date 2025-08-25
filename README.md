@@ -2,7 +2,7 @@
 
 This utility disables defective memory regions on Intel-based Macs to prevent system crashes or kernel panics caused by faulty RAM. It is not compatible with Apple Silicon Macs. 
 
-Chances are high, you can resolve the following errors like this when executing this utility before every macOS Boot:
+Chances are high, you can resolve the following error when executing this utility (automatically) before each macOS Boot:
 
 - **PPM002, PPM003, PPM004...**: _"There may be an issue with the onboard memory."_
 
