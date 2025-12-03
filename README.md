@@ -30,7 +30,7 @@ Use [OpenCore Legacy Patcher](https://github.com/0nelight/macOS-Disable-RAM-Area
 ## Compatibility
 Tested on:
 - MacBook Pro (Late 2013, macOS Big Sur)
-- MacBook Pro (2019, 16") ([see](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3#discussioncomment-10753593), ([and here](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/19))
+- MacBook Pro (2019, 16") ([see](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3#discussioncomment-10753593), [and here](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/19))
 - MacBook Pro (2020, macOS Sequoia) ([see](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/18#discussion-8795338))
 - Additional success stories on the [Issues page](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues?q=label%3Asuccess+is%3Aclosed)
 
