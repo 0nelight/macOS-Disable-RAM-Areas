@@ -30,8 +30,8 @@ Use [OpenCore Legacy Patcher](https://github.com/0nelight/macOS-Disable-RAM-Area
 ## Compatibility
 Tested on:
 - MacBook Pro (Late 2013, macOS Big Sur)
-- MacBook Pro (2019, 16") ([see discussion](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3#discussioncomment-10753593))
-- MacBook Pro (2020, macOS Sequoia) ([see discussion](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/18#discussion-8795338))
+- MacBook Pro (2019, 16") ([see](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/3#discussioncomment-10753593), ([and here](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/19))
+- MacBook Pro (2020, macOS Sequoia) ([see](https://github.com/0nelight/macOS-Disable-RAM-Areas/discussions/18#discussion-8795338))
 - Additional success stories on the [Issues page](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues?q=label%3Asuccess+is%3Aclosed)
 
 ## Support
@@ -40,7 +40,7 @@ Tested on:
 - Share success stories [here](https://github.com/0nelight/macOS-Disable-RAM-Areas/issues/new?assignees=&labels=success&projects=&template=success-story.md&title=Success-Story).
 
 ## Disclaimer
-This utility is not affiliated with Apple Inc. Use at your own risk. The author is not responsible for any outcomes or time invested. Provided as-is, without warranties, for personal use only.
+This utility is not affiliated with Apple Inc. Use at your own risk. The author is not responsible for any outcomes or time invested. Provided as-is, without warranties, for personal use only. A swollen battery can deform components, cause shorts, or catch fire. Ensure your RAM issues are not due to battery swelling pressing on the logic board.
 
 ## Some additonal Notes:
 
