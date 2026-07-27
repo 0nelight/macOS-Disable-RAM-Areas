@@ -109,12 +109,11 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
     // If only page 5 is referenced, then 5 - 5 + 1 = 1 page. 
     // If 5 and 7 are referenced, then 7 - 5 + 1 = 3
     UINTN NumPages = EndAddr - Addr + 1;
+    // Change the EndAddr to the end of the page it's in.
+    EndAddr = (EndAddr + 1) * EFI_PAGE_SIZE - 1;
     // Convert the page numbers with the first address 
     // back to the addresses of the beginning of the page.
     Addr *= EFI_PAGE_SIZE;
-    EndAddr *= EFI_PAGE_SIZE;
-    // Change the EndAddr to the end of the page it's in.
-    EndAddr |= EFI_PAGE_SIZE - 1;
 
     Print(L"Disable from 0x%lx to 0x%lx, which is %lu pages\n\n", Addr, EndAddr, NumPages);
 
