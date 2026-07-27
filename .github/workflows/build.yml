@@ -1,0 +1,50 @@
+name: Build EFI
+
+# Builds disable-ram-area.efi from source with gnu-efi so the binary is always
+# generated from the current code (and can never lag behind it). Runs on every
+# push/PR, on manual dispatch, and when a release is published — attaching the
+# freshly built .efi to that release automatically.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+  release:
+    types: [ published ]
+
+permissions:
+  contents: write   # needed to attach the built .efi to a release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install gnu-efi toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gnu-efi build-essential binutils
+
+      - name: Build
+        run: make
+
+      - name: Verify output
+        run: |
+          test -f disable-ram-area.efi
+          file disable-ram-area.efi
+          sha256sum disable-ram-area.efi
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: disable-ram-area-efi
+          path: disable-ram-area.efi
+          if-no-files-found: error
+
+      - name: Attach to release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: disable-ram-area.efi
