@@ -36,6 +36,16 @@ jobs:
           file disable-ram-area.efi
           sha256sum disable-ram-area.efi
 
+      - name: Install QEMU + OVMF (smoke test)
+        run: |
+          sudo apt-get install -y --no-install-recommends \
+            qemu-system-x86 ovmf mtools dosfstools
+
+      - name: Boot smoke test (fails if the binary faults at runtime)
+        run: |
+          chmod +x scripts/uefi-smoke-test.sh
+          scripts/uefi-smoke-test.sh disable-ram-area.efi
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:

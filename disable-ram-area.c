@@ -79,6 +79,14 @@ efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
     EFI_PHYSICAL_ADDRESS Addr, EndAddr;
     UINTN Stalltime;
 
+    // Initialize the gnu-efi library globals (BS, ST, ConOut, ...) from the
+    // system table. This MUST run before any Print()/BS->... call. Some gnu-efi
+    // toolchains run it implicitly via .init_array constructors, but others
+    // (e.g. gnu-efi 3.0.15, whose crt0 calls efi_main directly) do not, in which
+    // case BS stays NULL and the first BS->HandleProtocol below faults. Calling
+    // it explicitly makes the binary build and run correctly on any toolchain.
+    InitializeLib(ImageHandle, SystemTable);
+
     Status = uefi_call_wrapper(BS->HandleProtocol, 3, ImageHandle, &LoadedImageProtocol, (void **)&loaded_image);
     if (EFI_ERROR(Status)) {
        Print(L"Error HandleProtocol: %r\n", Status);
