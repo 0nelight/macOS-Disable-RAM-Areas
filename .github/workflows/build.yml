@@ -2,11 +2,13 @@ name: Build EFI
 
 # Builds disable-ram-area.efi from source with gnu-efi so the binary is always
 # generated from the current code (and can never lag behind it). Runs on every
-# push/PR, on manual dispatch, and when a release is published — attaching the
-# freshly built .efi to that release automatically.
+# push/PR and on manual dispatch. Pushing a version tag (v*) additionally
+# creates a GitHub Release and attaches the freshly built, smoke-tested .efi to
+# it — so a release binary is always built by CI from the tagged source.
 on:
   push:
     branches: [ main, master ]
+    tags: [ 'v*' ]
   pull_request:
   workflow_dispatch:
   release:
@@ -53,8 +55,14 @@ jobs:
           path: disable-ram-area.efi
           if-no-files-found: error
 
-      - name: Attach to release
-        if: github.event_name == 'release'
+      # On a version tag push, create (or update) the GitHub Release for that
+      # tag and attach the built binary. Runs only after the smoke test passes,
+      # so a faulting binary can never reach a release.
+      - name: Create release and attach binary
+        if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, '-') }}
           files: disable-ram-area.efi

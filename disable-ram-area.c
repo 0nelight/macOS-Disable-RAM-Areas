@@ -6,7 +6,7 @@ EFI_STATUS
 ParseCommandLine(CHAR16 *command_line, EFI_PHYSICAL_ADDRESS *Addr, EFI_PHYSICAL_ADDRESS *EndAddr, UINTN *Stalltime) {
     Print(L"\nmacOS-Disable-RAM-Areas\n");
     Print(L"https://github.com/0nelight/macOS-Disable-RAM-Areas/\n");
-    Print(L"Version 0.2.3-beta\n\n");
+    Print(L"Version 0.2.4-beta\n\n");
 
     // Ensure command_line is not null
     if (command_line == NULL) {
